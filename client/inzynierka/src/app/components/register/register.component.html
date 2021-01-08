@@ -1,0 +1,125 @@
+<div class="py-5">
+  <div class="row">
+    <div class="col-md-6 mx-auto">
+      <span class="anchor" id="formLogin"></span>
+      <div class="card rounded-0">
+        <div class="card-header">
+          <h3 class="mb-0">Registration</h3>
+        </div>
+        <div class="card-body">
+          <form class="form">
+            <div class="form-group">
+              <label>Name</label>
+              <input type="text" [(ngModel)]="registerUserData.name" #name="ngModel" name="name"
+                     class="form-control rounded-0" required minlength="2" required>
+              <div *ngIf="name.invalid && (name.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="name.errors.required">
+                  Name is required.
+                </div>
+                <div *ngIf="name.errors.minlength">
+                  Name must be at least 2 characters long.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Last Name</label>
+              <input type="text" [(ngModel)]="registerUserData.lastName" #lastName="ngModel" name="lastName"
+                     class="form-control rounded-0" required minlength="2" required>
+              <div *ngIf="lastName.invalid && (lastName.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="lastName.errors.required">
+                  Last Name is required.
+                </div>
+                <div *ngIf="lastName.errors.minlength">
+                  Last Name must be at least 2 characters long.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Email</label>
+              <input type="email" [(ngModel)]="registerUserData.email" #email="ngModel" name="email"
+                     [class.is-invalid]="email.invalid && email.touched"
+                     class="form-control rounded-0" [pattern]="emailPattern" required>
+              <div *ngIf="email.invalid && email.touched"
+                   class="alert alert-danger">
+                <div *ngIf="email.errors.required">
+                  Email is required.
+                </div>
+                <div *ngIf="email.errors.pattern">
+                  Please provide a valid email address.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Password</label>
+              <input type="password" [(ngModel)]="registerUserData.password" #password="ngModel" name="password"
+                     class="form-control rounded-0" required minlength="8" required>
+              <div *ngIf="password.invalid && (password.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="password.errors.required">
+                  Password is required.
+                </div>
+                <div *ngIf="password.errors.minlength">
+                  Password must be at least 8 characters long.
+                </div>
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Confirm Password</label>
+              <input type="password" [(ngModel)]="registerUserData.samePassword" #password2="ngModel" name="samePassword"
+                     class="form-control rounded-0" required minlength="8" required>
+              <div *ngIf="password2.invalid && (password2.touched)"
+                   class="alert alert-danger">
+
+                <div *ngIf="password2.errors.required">
+                  Confirm password is required.
+                </div>
+                <div *ngIf="password2.errors.minlength">
+                  Confirm password must be at least 8 characters long.
+                </div>
+              </div>
+            </div>
+            <button type="button" (click)="registerUser()" class="btn btn-primary float-right">Register</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!-- <div class="container">
+  <h1>Angular Validation Password and Confirm Password - ItSolutionStuff.com</h1>
+
+  <form [formGroup]="form" (ngSubmit)="submit()">
+
+    <div class="form-group">
+      <label for="password">Password</label>
+      <input
+        formControlName="password"
+        id="password"
+        type="password"
+        class="form-control">
+      <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger">
+        <div *ngIf="f.password.errors.required">Password is required.</div>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="confirm_password">Confirm Password</label>
+      <input
+        formControlName="confirm_password"
+        id="confirm_password"
+        type="password"
+        class="form-control">
+      <div *ngIf="f.confirm_password.touched && f.confirm_password.invalid" class="alert alert-danger">
+        <div *ngIf="f.confirm_password.errors.required">Password is required.</div>
+        <div *ngIf="f.confirm_password.errors.confirmedValidator">Password and Confirm Password must be match.</div>
+      </div>
+    </div>
+
+    <button class="btn btn-primary" type="submit" [disabled]="!form.valid">Submit</button>
+  </form>
+</div>-->
