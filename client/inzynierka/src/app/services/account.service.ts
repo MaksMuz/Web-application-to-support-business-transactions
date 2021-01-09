@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 
 import { ApiHelperService } from './api-helper.service';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AccountService {
-  user: any;
-  constructor(private helper: ApiHelperService) { }
+
+  private baseUrl = 'http://localhost:3000/api/account';
+  private getUserDataUrl = this.baseUrl + '/';
+  private UserAddressUrl = this.baseUrl + '/address';
+  constructor(private helper: ApiHelperService, private http: HttpClient) {
+  }
 
   // tslint:disable-next-line:typedef
-  getUserData() {
-      if (localStorage.getItem('token')) {
-        const data = this.helper.get(
-          'http://localhost:3000/api/account'
-        );
-        this.user = data;
-        console.log(this.user);
-      } else {
-        console.log('error in account.service');
-      }
+  getUserData(){
+    return this.helper.get<any>(this.getUserDataUrl);
+  }
+  // tslint:disable-next-line:typedef
+  getUserAddress(){
+    return this.helper.get<any>(this.UserAddressUrl);
+  }
+  // tslint:disable-next-line:typedef
+  postUserAddress(address){
+    return this.helper.post<any>(this.UserAddressUrl, address);
   }
 }

@@ -28,13 +28,13 @@ const UserModelSchema = new Schema({
 //            data: Buffer,
 //            contentType: String
 //        },
-//    address: {
-//        country: String,
-//        province: String,
-//        city: String,
-//        addres: String,
-//        postCode: String
-//    },
+    address: {
+        country: String,
+        province: String,
+        city: String,
+        shipAddress: String,
+        postCode: String,
+    },
     created: {
         type: Date,
         default: Date.now

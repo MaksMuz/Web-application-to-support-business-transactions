@@ -21,6 +21,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthService } from './services/auth.service';
 import { AccountComponent } from './components/account/account.component';
 import { ApiHelperService } from './services/api-helper.service';
+import { AddressComponent } from './components/address/address.component';
 
 @NgModule({
   declarations: [
@@ -37,6 +38,7 @@ import { ApiHelperService } from './services/api-helper.service';
     LoginComponent,
     RegisterComponent,
     AccountComponent,
+    AddressComponent,
   ],
   imports: [
     BrowserModule,

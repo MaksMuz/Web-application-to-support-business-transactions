@@ -37,12 +37,12 @@ export class RegisterComponent implements OnInit {
 
   // todo: check if user by mail exists
 
-  async registerUser() {
+  registerUser() {
     console.log(this.registerUserData);
     this.auth.registerUser(this.registerUserData)
       .subscribe(
         res => {
-          localStorage.setItem('token', res.token);
+          localStorage.setItem('token', res.body.token);
           this.router.navigate(['account']);
         },
         err => console.log(err)
