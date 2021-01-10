@@ -25,7 +25,6 @@ router.post('/register', (req, res) => {
     });
 });
 
-// login user /route/user
 router.post('/login', (req, res) => {
     let userData = req.body;
     //find user with email

@@ -23,11 +23,6 @@ const UserModelSchema = new Schema({
     },
     salt: String,
     picture: String,
-//    img:
-//        {
-//            data: Buffer,
-//            contentType: String
-//        },
     address: {
         country: String,
         province: String,

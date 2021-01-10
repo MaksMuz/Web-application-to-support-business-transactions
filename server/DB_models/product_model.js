@@ -6,17 +6,20 @@ const ProductModelSchema = new Schema({
     productTitle: String,
     productDescription: String,
     productPrice: Number,
-    productImage: String,
+    productImage: {
+        data: Buffer,
+        contentType: String
+    },
     productCreatedDate: {
         type: Date, default: Date.now
     },
     productCategory: {
-        type: Schema.Types.ObjectId, ref: 'Category'
+        type: Schema.Types.ObjectId, ref: 'Categories'
     },
     productOwner: {
         type: Schema.Types.ObjectId, ref: 'Users'
     },
 });
 
-let Model =  mongoose.model('Product', ProductModelSchema, 'Products');
+let Model =  mongoose.model('product', ProductModelSchema, 'Products');
 module.exports = Model
