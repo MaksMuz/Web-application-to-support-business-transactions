@@ -29,12 +29,13 @@ app.use(cors());
 //routes
 const authRoutes = require('./route/authorization');
 const accountRoutes = require('./route/account');
+const categoryRoutes = require('./route/category');
 
 app.use('/api/authorization', authRoutes);
 app.use(expressJwt( {secret: config.SECRET, algorithms: ['HS256'], requestProperty: 'userId' })); //pozwalam na przejscie logowania i rejestracji bez tokena
 
 app.use('/api/account', accountRoutes);
-
+app.use('/api/category', categoryRoutes);
 //creating server on port 3000
 app.listen(config.PORT, err => {
     console.log('Server work on port: ' + config.PORT);

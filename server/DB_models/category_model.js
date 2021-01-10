@@ -6,7 +6,11 @@ const CategoryModelSchema = new Schema({
         type: String,
         lowercase: true,
         unique:true
+    },
+    created: {
+        type: Date,
+        default: Date.now()
     }
 });
 
-module.exports = mongoose.model('Category', CategoryModelSchema);
+module.exports = mongoose.model('category', CategoryModelSchema, 'Categories');
