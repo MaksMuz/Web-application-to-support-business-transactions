@@ -1,5 +1,5 @@
 <div class="card">
-  <div class="card-header">Filters</div>
+  <div class="card-header">Price Filter</div>
   <div class="card-body">
     <form>
       <div class="form-group">
@@ -14,5 +14,12 @@
 
       <button class="btn btn-primary btn-block btn-sm">Filter by Price</button>
     </form>
+  </div>
+
+  <div *ngIf="categoriesNames" class="card-header">Categories</div>
+  <div class="card-body">
+        <a *ngFor="let category of categoriesNames">
+          {{category.categoryName}}
+        </a>
   </div>
 </div>

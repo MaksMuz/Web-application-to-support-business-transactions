@@ -2,11 +2,11 @@ const router = require('express').Router();
 const Category = require('../DB_models/category_model');
 
 router.get('/',(req, res) => {
-    Category.find({}, {_id: 1, categoryName: 1 }, (err, categories) => {
+    Category.find({}, (err, categories) => {
         if (err) {
             return res.status(400).json('Failed to find categories.');
         } else {
-            res.json(categories);
+            res.json({categories: categories});
         }
     })
 })

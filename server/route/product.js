@@ -6,7 +6,7 @@ router.get('/',(req, res) => {
         if (err) {
             return res.status(400).json('Failed to find products.');
         } else {
-            res.json(products);
+            res.json({products: products});
         }
     })
 })

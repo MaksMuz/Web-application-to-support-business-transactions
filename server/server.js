@@ -32,12 +32,12 @@ const accountRoutes = require('./route/account');
 const categoryRoutes = require('./route/category');
 const productRoutes = require('./route/product');
 
+app.use('/api/category', categoryRoutes);
 app.use('/api/authorization', authRoutes);
+app.use('/api/product', productRoutes);
 app.use(expressJwt( {secret: config.SECRET, algorithms: ['HS256'], requestProperty: 'userId' })); //pozwalam na przejscie logowania i rejestracji bez tokena
 
 app.use('/api/account', accountRoutes);
-app.use('/api/category', categoryRoutes);
-app.use('/api/product', productRoutes);
 //creating server on port 3000
 app.listen(config.PORT, err => {
     console.log('Server work on port: ' + config.PORT);

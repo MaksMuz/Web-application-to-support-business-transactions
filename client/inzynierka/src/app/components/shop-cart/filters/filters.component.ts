@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {FiltersService} from '../../../services/filters.service';
 
 @Component({
   selector: 'app-filters',
@@ -7,9 +8,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor() { }
+  constructor(private filterService: FiltersService) { }
+
+  categoriesNames: any;
 
   ngOnInit(): void {
+    this.getCategories();
   }
 
+  getCategories(): void {
+    this.filterService.getCategories()
+      .subscribe(
+        res => {
+          console.log(res.body.categories);
+          this.categoriesNames = res.body.categories;
+        },
+        err => console.log(err)
+      );
+  }
 }

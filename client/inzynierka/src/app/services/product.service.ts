@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Product } from '../models/product';
+import {ApiHelperService} from './api-helper.service';
 
 @Injectable({
   providedIn: 'root'
@@ -18,10 +19,17 @@ export class ProductService {
     new Product(8, 'Product 8', 'This is the product 8 description. This product is very cool!', 1000, 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTaMtcbwcyGq8ISkPtGIvcdboipbZLLs17i-w&usqp=CAU'),
   ];
 
-  constructor() { }
+  private baseUrl = 'http://localhost:3000/api/product';
+  private getProductsUrl = this.baseUrl + '/';
+
+  constructor(private helper: ApiHelperService) { }
 
   getProducts(): Product[] {
     // TODO: populate products from an API and return an observable
     return this.products;
+  }
+
+  getAllProducts(){
+    return this.helper.get<any>(this.getProductsUrl);
   }
 }
