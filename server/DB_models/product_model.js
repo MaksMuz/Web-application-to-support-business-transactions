@@ -14,10 +14,10 @@ const ProductModelSchema = new Schema({
         type: Date, default: Date.now
     },
     productCategory: {
-        type: Schema.Types.ObjectId, ref: 'Categories'
+        type: Schema.Types.ObjectId, ref: 'category'
     },
     productOwner: {
-        type: Schema.Types.ObjectId, ref: 'Users'
+        type: Schema.Types.ObjectId, ref: 'user'
     },
 });
 

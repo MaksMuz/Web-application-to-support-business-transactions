@@ -1,0 +1,36 @@
+<section id="product">
+  <div class="container-fluid p-5">
+    <div *ngIf="product">
+      <div class="row">
+        <div class="col-lg-4">
+          <img src="https://adrenaline.pl/pol_pl_BUTY-DAMSKIE-NIKE-AIR-MAX-270-BIALE-AH6789-100-42576_3.png" alt="productImage" class="image img-thumbnail">
+        </div>
+        <div class="col-lg-5">
+          <div class="row">
+            <div class="col-6">
+              <h4>{{ product.productTitle }}</h4>
+              <p class="m-0">
+                <small>by {{ product.productOwner.userName }} {{product.productOwner.userLastName}}</small>
+              </p>
+              <p class="m-0">
+                <small class="text-muted">{{ product.productCategory.categoryName }}</small>
+              </p>
+            </div>
+          </div>
+          <hr>
+          <p class="lead">
+            {{ product.productDescription }}
+          </p>
+        </div>
+        <div class="col-lg-3">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Price: {{ product.productPrice | currency: 'USD' }}</h5>
+              <a class="btn btn-dark">Add to Cart</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

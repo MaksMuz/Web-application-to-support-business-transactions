@@ -6,6 +6,7 @@ import {RegisterComponent} from '../components/register/register.component';
 import {ShopCartComponent} from '../components/shop-cart/shop-cart.component';
 import {AccountComponent} from '../components/account/account.component';
 import {AddressComponent} from '../components/address/address.component';
+import {ProductViewComponent} from '../components/product-view/product-view.component';
 
 const routes: Routes = [
   {
@@ -32,6 +33,10 @@ const routes: Routes = [
   {
     path: 'address',
     component: AddressComponent
+  },
+  {
+    path: 'products/:id',
+    component: ProductViewComponent
   },
 ];
 

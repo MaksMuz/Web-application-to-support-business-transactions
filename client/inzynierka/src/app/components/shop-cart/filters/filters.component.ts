@@ -20,7 +20,6 @@ export class FiltersComponent implements OnInit {
     this.filterService.getCategories()
       .subscribe(
         res => {
-          console.log(res.body.categories);
           this.categoriesNames = res.body.categories;
         },
         err => console.log(err)

@@ -20,7 +20,6 @@ export class ProductService {
   ];
 
   private baseUrl = 'http://localhost:3000/api/product';
-  private getProductsUrl = this.baseUrl + '/';
 
   constructor(private helper: ApiHelperService) { }
 
@@ -30,6 +29,11 @@ export class ProductService {
   }
 
   getAllProducts(){
-    return this.helper.get<any>(this.getProductsUrl);
+    return this.helper.get<any>(this.baseUrl);
+  }
+
+  getProductView(productId){
+    const url = this.baseUrl + '/' + productId;
+    return this.helper.get<any>(url);
   }
 }
