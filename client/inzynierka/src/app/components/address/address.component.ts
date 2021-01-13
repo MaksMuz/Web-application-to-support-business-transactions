@@ -35,7 +35,6 @@ export class AddressComponent implements OnInit {
     this.accountService.getUserAddress()
       .subscribe(
         res => {
-          console.log(res.status);
           if (res.status === 204){
             this.address.country = '';
             this.address.province = '';
@@ -60,7 +59,7 @@ export class AddressComponent implements OnInit {
     this.accountService.postUserAddress(this.address)
         .subscribe(
           res => {
-              this.router.navigate(['address']);
+              this.router.navigate(['account']);
           },
           err => console.log(err)
       );

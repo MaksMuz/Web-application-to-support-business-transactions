@@ -17,8 +17,8 @@
   </div>
 
   <div *ngIf="categoriesNames" class="card-header">Categories</div>
-  <div class="card-body">
-        <a *ngFor="let category of categoriesNames">
+  <div class="card-body" *ngFor="let category of categoriesNames">
+        <a>
           {{category.categoryName}}
         </a>
   </div>

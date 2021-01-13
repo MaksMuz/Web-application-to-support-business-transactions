@@ -7,6 +7,7 @@ import {ShopCartComponent} from '../components/shop-cart/shop-cart.component';
 import {AccountComponent} from '../components/account/account.component';
 import {AddressComponent} from '../components/address/address.component';
 import {ProductViewComponent} from '../components/product-view/product-view.component';
+import {AddProductComponent} from '../components/add-product/add-product.component';
 
 const routes: Routes = [
   {
@@ -31,13 +32,17 @@ const routes: Routes = [
     component: AccountComponent
   },
   {
-    path: 'address',
+    path: 'account/address',
     component: AddressComponent
   },
   {
     path: 'products/:id',
     component: ProductViewComponent
   },
+  {
+    path: 'account/add-product',
+    component: AddProductComponent
+  }
 ];
 
 @NgModule({

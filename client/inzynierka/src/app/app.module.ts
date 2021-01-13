@@ -23,6 +23,7 @@ import { AccountComponent } from './components/account/account.component';
 import { ApiHelperService } from './services/api-helper.service';
 import { AddressComponent } from './components/address/address.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
+import { AddProductComponent } from './components/add-product/add-product.component';
 
 @NgModule({
   declarations: [
@@ -41,6 +42,7 @@ import { ProductViewComponent } from './components/product-view/product-view.com
     AccountComponent,
     AddressComponent,
     ProductViewComponent,
+    AddProductComponent,
   ],
   imports: [
     BrowserModule,

@@ -6,10 +6,7 @@ const ProductModelSchema = new Schema({
     productTitle: String,
     productDescription: String,
     productPrice: Number,
-    productImage: {
-        data: Buffer,
-        contentType: String
-    },
+    productImage: String,
     productCreatedDate: {
         type: Date, default: Date.now
     },

@@ -48,7 +48,6 @@ router.post('/address', (req, res) => {
         }
         else {
             const newAddress = req.body;
-            console.log(newAddress);
             if (newAddress.country) user.address.country = newAddress.country;
             if (newAddress.province) user.address.province = newAddress.province;
             if (newAddress.city) user.address.city = newAddress.city;
