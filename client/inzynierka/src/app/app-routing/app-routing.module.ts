@@ -8,6 +8,7 @@ import {AccountComponent} from '../components/account/account.component';
 import {AddressComponent} from '../components/address/address.component';
 import {ProductViewComponent} from '../components/product-view/product-view.component';
 import {AddProductComponent} from '../components/add-product/add-product.component';
+import {MyProductsComponent} from "../components/my-products/my-products.component";
 
 const routes: Routes = [
   {
@@ -42,6 +43,10 @@ const routes: Routes = [
   {
     path: 'account/add-product',
     component: AddProductComponent
+  },
+  {
+    path: 'account/my-products',
+    component: MyProductsComponent
   }
 ];
 

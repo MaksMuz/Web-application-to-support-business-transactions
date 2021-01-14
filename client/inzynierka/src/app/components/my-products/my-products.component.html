@@ -1,0 +1,37 @@
+<div class="container p-5">
+  <h3 *ngIf="productsData && !productsData.length" class="display-2 text-center mt-5">My Products is Empty</h3>
+  <div *ngIf="productsData && productsData.length" class="row">
+    <div class="col">
+      <h4 class="display-4">My Products</h4>
+      <div class="row">
+        <div class="offset-10 col-2 d-none d-md-block">
+          <p>
+            <small class="text-muted">Price</small>
+          </p>
+        </div>
+      </div>
+      <hr class="mt-0">
+      <div *ngFor="let product of productsData" class="product">
+        <div class="row">
+          <div class="col-4 col-md-2">
+            <a routerLink="/products/{{ product._id }}">
+              <img src="{{ product.productImage }}" alt="image" class="img-fluid img-thumbnail">
+            </a>
+          </div>
+          <div class="col-5 col-md-8">
+            <h5>
+              <a routerLink="/products/{{ product._id }}">{{ product.productTitle }}</a>
+              <p class="m-0">
+                <small class="text-muted">{{ product.productCategory.categoryName }}</small>
+              </p>
+            </h5>
+          </div>
+          <div class="col-2">
+            <h6 class="font-weight-bold text-danger">{{ product.productPrice | currency }}</h6>
+          </div>
+        </div>
+        <hr>
+      </div>
+    </div>
+  </div>
+</div>

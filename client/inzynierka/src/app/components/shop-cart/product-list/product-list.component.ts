@@ -34,6 +34,7 @@ export class ProductListComponent implements OnInit {
       );
   }
 
+
   handleAddToCart(): void {
     this.msg.sendMsg(this.product);
   }

@@ -28,6 +28,11 @@ export class ProductService {
     return this.products;
   }
 
+  getMyProducts(){
+    const url = 'http://localhost:3000/api/addProduct';
+    return this.helper.get<any>(url);
+  }
+
   getAllProducts(){
     return this.helper.get<any>(this.baseUrl);
   }

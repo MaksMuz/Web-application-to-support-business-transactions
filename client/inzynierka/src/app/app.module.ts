@@ -24,6 +24,7 @@ import { ApiHelperService } from './services/api-helper.service';
 import { AddressComponent } from './components/address/address.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
+import { MyProductsComponent } from './components/my-products/my-products.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +44,7 @@ import { AddProductComponent } from './components/add-product/add-product.compon
     AddressComponent,
     ProductViewComponent,
     AddProductComponent,
+    MyProductsComponent,
   ],
   imports: [
     BrowserModule,

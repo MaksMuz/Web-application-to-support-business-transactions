@@ -43,7 +43,7 @@ export class AddProductComponent implements OnInit {
     this.productService.addProduct(formdata)
       .subscribe(
         res => {
-          this.router.navigate(['account']);
+          this.router.navigate(['account/my-products']);
         },
         err => console.log(err)
       );

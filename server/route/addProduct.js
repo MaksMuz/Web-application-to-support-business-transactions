@@ -11,9 +11,19 @@ const storage = multer.diskStorage({
     }
 });
 
-var upload = multer({storage: storage})
+var upload = multer({storage: storage});
 
-//let upload = multer({ dest: 'uploads/' })
+router.get('/', (req, res) => {
+    Product.find( { productOwner: req.userId }).populate('productCategory').exec((err, products)=> {
+        if (err) {
+            console.log(err);
+            return res.status(400).json('Failed to find user products.');
+        } else {
+            res.json({products: products});
+        }
+    });
+});
+
 router.post('/', upload.single('productImage'), (req, res) => {
     let productData = req.body;
     let product = new Product();
