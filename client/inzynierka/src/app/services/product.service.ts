@@ -42,6 +42,11 @@ export class ProductService {
     return this.helper.get<any>(url);
   }
 
+  getProductsFromCategory(categoryId){
+    const url = this.baseUrl + '/category/' + categoryId;
+    return this.helper.get<any>(url);
+  }
+
   addProduct(product){
     const url = 'http://localhost:3000/api/addProduct';
     return this.helper.post<any>(url, product);

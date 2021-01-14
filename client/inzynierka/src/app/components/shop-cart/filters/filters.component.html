@@ -18,7 +18,7 @@
 
   <div *ngIf="categoriesNames" class="card-header">Categories</div>
   <div class="card-body" *ngFor="let category of categoriesNames">
-        <a>
+        <a [routerLink]="['category/',category._id]">
           {{category.categoryName}}
         </a>
   </div>

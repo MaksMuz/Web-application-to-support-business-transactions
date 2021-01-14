@@ -25,6 +25,7 @@ import { AddressComponent } from './components/address/address.component';
 import { ProductViewComponent } from './components/product-view/product-view.component';
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
+import { CategoryProductListComponent } from './components/shop-cart/category-product-list/category-product-list.component';
 
 @NgModule({
   declarations: [
@@ -45,6 +46,7 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
     ProductViewComponent,
     AddProductComponent,
     MyProductsComponent,
+    CategoryProductListComponent,
   ],
   imports: [
     BrowserModule,

@@ -11,6 +11,17 @@ router.get('/',(req, res) => {
     })
 })
 
+router.get('/category/:id',(req, res) => {
+    Product.find({productCategory: req.params.id}).exec((err, products) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).json('Failed to find products in category.');
+        } else {
+            res.json({products: products});
+        }
+    });
+});
+
 router.get('/:id',(req, res) => {
     if (!req.params.id) {
         return res.status(400).json('No id.');

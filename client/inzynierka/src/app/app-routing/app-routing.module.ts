@@ -8,7 +8,9 @@ import {AccountComponent} from '../components/account/account.component';
 import {AddressComponent} from '../components/address/address.component';
 import {ProductViewComponent} from '../components/product-view/product-view.component';
 import {AddProductComponent} from '../components/add-product/add-product.component';
-import {MyProductsComponent} from "../components/my-products/my-products.component";
+import {MyProductsComponent} from '../components/my-products/my-products.component';
+import {ProductListComponent} from '../components/shop-cart/product-list/product-list.component';
+import {CategoryProductListComponent} from '../components/shop-cart/category-product-list/category-product-list.component';
 
 const routes: Routes = [
   {
@@ -18,7 +20,17 @@ const routes: Routes = [
   },
   {
     path: 'shop',
-    component: ShopCartComponent
+    component: ShopCartComponent,
+    children: [
+      {
+        path: '',
+        component: ProductListComponent
+      },
+      {
+        path: 'category/:id',
+        component: CategoryProductListComponent
+      }
+    ]
   },
   {
     path: 'login',
