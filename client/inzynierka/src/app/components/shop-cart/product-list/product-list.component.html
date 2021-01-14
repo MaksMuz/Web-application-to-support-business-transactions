@@ -1,7 +1,7 @@
 <div class="row">
   <div class="col-md-4" *ngFor="let product of productsData">
     <div class="card mb-4 shadow-sm">
-      <img class="bd-placeholder-img card-img-top p-2" width="100%" src="https://adrenaline.pl/pol_pl_BUTY-DAMSKIE-NIKE-AIR-MAX-270-BIALE-AH6789-100-42576_3.png"/>
+      <img class="bd-placeholder-img card-img-top p-2" width="100%" src="{{product.productImage}}"/>
       <div class="card-body">
         <p class="card-text">
           <strong><small class="text-muted">{{ product.productPrice | currency: 'USD' }}</small></strong>

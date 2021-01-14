@@ -17,7 +17,7 @@ export class AddProductComponent implements OnInit {
     productCategory: '',
     productImage: null
   };
-
+  images;
   categories: any;
 
   constructor(private filterService: FiltersService, private productService: ProductService, private router: Router) { }
@@ -26,9 +26,21 @@ export class AddProductComponent implements OnInit {
     this.getCategories();
   }
 
+  fileChange(event) {
+    if (event.target.files.length > 0) {
+      const file = event.target.files[0];
+      this.productData.productImage = file;
+    }
+  }
+
   addProduct() {
-    console.log(this.productData);
-    this.productService.addProduct(this.productData)
+    const formdata = new FormData();
+    formdata.append('productImage', this.productData.productImage);
+    formdata.append('productTitle', this.productData.productTitle);
+    formdata.append('productDescription', this.productData.productDescription);
+    formdata.append('productPrice', this.productData.productPrice.toString());
+    formdata.append('productCategory', this.productData.productCategory);
+    this.productService.addProduct(formdata)
       .subscribe(
         res => {
           this.router.navigate(['account']);
