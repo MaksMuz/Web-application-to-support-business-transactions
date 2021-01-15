@@ -1,5 +1,6 @@
 const router = require('express').Router();
 const Product = require('../DB_models/product_model');
+const querystring = require('querystring');
 
 router.get('/',(req, res) => {
     Product.find({}, (err, products) => {
@@ -16,6 +17,19 @@ router.get('/category/:id',(req, res) => {
         if (err) {
             console.log(err);
             return res.status(400).json('Failed to find products in category.');
+        } else {
+            res.json({products: products});
+        }
+    });
+});
+
+router.get('/price?',(req, res) => {
+    const values = querystring.parse(req.query.parameters);
+    Product.find({productPrice: {$gte: values.valueFrom, $lte: values.valueTo}})
+        .exec((err, products) => {
+        if (err) {
+            console.log(err);
+            return res.status(400).json('Failed to find by price.');
         } else {
             res.json({products: products});
         }

@@ -11,6 +11,7 @@ import {AddProductComponent} from '../components/add-product/add-product.compone
 import {MyProductsComponent} from '../components/my-products/my-products.component';
 import {ProductListComponent} from '../components/shop-cart/product-list/product-list.component';
 import {CategoryProductListComponent} from '../components/shop-cart/category-product-list/category-product-list.component';
+import {PriceProductListComponent} from '../components/shop-cart/price-product-list/price-product-list.component';
 
 const routes: Routes = [
   {
@@ -29,6 +30,10 @@ const routes: Routes = [
       {
         path: 'category/:id',
         component: CategoryProductListComponent
+      },
+      {
+        path: 'price',
+        component: PriceProductListComponent
       }
     ]
   },

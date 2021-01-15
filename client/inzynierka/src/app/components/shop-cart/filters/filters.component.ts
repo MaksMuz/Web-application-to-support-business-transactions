@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {FiltersService} from '../../../services/filters.service';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-filters',
@@ -8,9 +9,11 @@ import {FiltersService} from '../../../services/filters.service';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor(private filterService: FiltersService) { }
+  constructor(private filterService: FiltersService, private router: Router) { }
 
   categoriesNames: any;
+  valueFrom: number;
+  valueTo: number;
 
   ngOnInit(): void {
     this.getCategories();
@@ -24,5 +27,9 @@ export class FiltersComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+
+  filter(): void {
+    this.router.navigate(['shop/price'], { queryParams: { valueFrom: this.valueFrom, valueTo: this.valueTo } });
   }
 }

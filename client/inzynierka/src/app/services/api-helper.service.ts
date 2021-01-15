@@ -18,6 +18,10 @@ export class ApiHelperService {
     return this.http.get<T>(link, { headers: this.getHeaders(), observe: 'response' });
   }
 
+  gett<T>(link: string, params): Observable<any> {
+    return this.http.get<T>(link, {headers: this.getHeaders(), observe: 'response', params});
+  }
+
   post<T>(link: string, body: any): Observable<any> {
     return this.http.post<T>(link, body, { headers: this.getHeaders(), observe: 'response' });
   }

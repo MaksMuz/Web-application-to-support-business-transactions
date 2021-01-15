@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Product } from '../models/product';
 import {ApiHelperService} from './api-helper.service';
+import {HttpParams} from "@angular/common/http";
 
 @Injectable({
   providedIn: 'root'
@@ -45,6 +46,14 @@ export class ProductService {
   getProductsFromCategory(categoryId){
     const url = this.baseUrl + '/category/' + categoryId;
     return this.helper.get<any>(url);
+  }
+
+  getProductsByPrice(params){
+    const parameters = new HttpParams()
+      .set('valueFrom', params.valueFrom)
+      .set('valueTo', params.valueTo);
+    const url = this.baseUrl + '/price?';
+    return this.helper.gett<any>(url, {parameters});
   }
 
   addProduct(product){

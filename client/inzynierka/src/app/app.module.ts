@@ -26,6 +26,7 @@ import { ProductViewComponent } from './components/product-view/product-view.com
 import { AddProductComponent } from './components/add-product/add-product.component';
 import { MyProductsComponent } from './components/my-products/my-products.component';
 import { CategoryProductListComponent } from './components/shop-cart/category-product-list/category-product-list.component';
+import { PriceProductListComponent } from './components/shop-cart/price-product-list/price-product-list.component';
 
 @NgModule({
   declarations: [
@@ -47,6 +48,7 @@ import { CategoryProductListComponent } from './components/shop-cart/category-pr
     AddProductComponent,
     MyProductsComponent,
     CategoryProductListComponent,
+    PriceProductListComponent,
   ],
   imports: [
     BrowserModule,
