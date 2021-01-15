@@ -12,6 +12,7 @@ import {MyProductsComponent} from '../components/my-products/my-products.compone
 import {ProductListComponent} from '../components/shop-cart/product-list/product-list.component';
 import {CategoryProductListComponent} from '../components/shop-cart/category-product-list/category-product-list.component';
 import {PriceProductListComponent} from '../components/shop-cart/price-product-list/price-product-list.component';
+import {SearchProductListComponent} from '../components/shop-cart/search-product-list/search-product-list.component';
 
 const routes: Routes = [
   {
@@ -34,6 +35,10 @@ const routes: Routes = [
       {
         path: 'price',
         component: PriceProductListComponent
+      },
+      {
+        path: 'search',
+        component: SearchProductListComponent
       }
     ]
   },

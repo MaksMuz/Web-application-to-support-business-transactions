@@ -36,6 +36,20 @@ router.get('/price?',(req, res) => {
     });
 });
 
+router.get('/search?',(req, res) => {
+    const reg = querystring.parse(req.query.parameters);
+    Product.find({ productTitle: { $regex: reg.reg, $options: "i" }})
+        .exec((err, products) => {
+            if (err) {
+                console.log(err);
+                return res.status(400).json('Failed to find by search.');
+            } else {
+                res.json({products: products});
+            }
+        });
+});
+
+
 router.get('/:id',(req, res) => {
     if (!req.params.id) {
         return res.status(400).json('No id.');

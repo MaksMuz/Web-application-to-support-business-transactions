@@ -77,7 +77,8 @@
               <label>Upload Image</label>
               <input type="file" class="form-control-file" accept="image/*" name="file" (change)="fileChange($event)">
             </div>
-            <button type="button" (click)="addProduct()" class="btn btn-dark float-right">Add</button>
+            <button type="button" (click)="addProduct()" class="btn btn-dark float-left">Add</button>
+            <button type="button" routerLink="/account" class="btn btn-dark float-right">Back</button>
           </form>
         </div>
       </div>
