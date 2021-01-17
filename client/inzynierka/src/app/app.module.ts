@@ -11,8 +11,6 @@ import { ShopCartComponent } from './components/shop-cart/shop-cart.component';
 import { FiltersComponent } from './components/shop-cart/filters/filters.component';
 import { ProductListComponent } from './components/shop-cart/product-list/product-list.component';
 import { CartComponent } from './components/shop-cart/cart/cart.component';
-import { CartItemComponent } from './components/shop-cart/cart/cart-item/cart-item.component';
-import { ProductComponent } from './components/shop-cart/product-list/product/product.component';
 
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'; // info
 import { HttpClientModule } from '@angular/common/http';
@@ -28,6 +26,7 @@ import { MyProductsComponent } from './components/my-products/my-products.compon
 import { CategoryProductListComponent } from './components/shop-cart/category-product-list/category-product-list.component';
 import { PriceProductListComponent } from './components/shop-cart/price-product-list/price-product-list.component';
 import { SearchProductListComponent } from './components/shop-cart/search-product-list/search-product-list.component';
+import { MainCartComponent } from './components/main-cart/main-cart.component';
 
 @NgModule({
   declarations: [
@@ -39,8 +38,6 @@ import { SearchProductListComponent } from './components/shop-cart/search-produc
     FiltersComponent,
     ProductListComponent,
     CartComponent,
-    CartItemComponent,
-    ProductComponent,
     LoginComponent,
     RegisterComponent,
     AccountComponent,
@@ -51,6 +48,7 @@ import { SearchProductListComponent } from './components/shop-cart/search-produc
     CategoryProductListComponent,
     PriceProductListComponent,
     SearchProductListComponent,
+    MainCartComponent,
   ],
   imports: [
     BrowserModule,

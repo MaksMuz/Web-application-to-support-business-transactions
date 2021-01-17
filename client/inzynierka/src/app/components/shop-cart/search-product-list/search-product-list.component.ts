@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
+import {AuthService} from '../../../services/auth.service';
+import {CartService} from '../../../services/cart.service';
 
 @Component({
   selector: 'app-search-product-list',
@@ -11,7 +13,8 @@ export class SearchProductListComponent implements OnInit {
 
   productsData: any;
   params: any;
-  constructor(private productService: ProductService, private route: ActivatedRoute) {
+  constructor(public authService: AuthService, private productService: ProductService,
+              private route: ActivatedRoute, private cartService: CartService) {
     this.route.queryParamMap.subscribe(params => {
       this.ngOnInit();
     });
@@ -24,6 +27,7 @@ export class SearchProductListComponent implements OnInit {
   getProductsBySearch(): void {
     this.route.queryParamMap.subscribe(
       res => {
+        // @ts-ignore
         this.params = res.params;
       },
       err => console.log(err)
@@ -37,6 +41,10 @@ export class SearchProductListComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+
+  handleAddToCart(product): void {
+    this.cartService.addToCart(product);
   }
 
 }

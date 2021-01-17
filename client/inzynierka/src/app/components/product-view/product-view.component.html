@@ -26,7 +26,8 @@
           <div class="card">
             <div class="card-body">
               <h5 class="card-title">Price: {{ product.productPrice | currency: 'USD' }}</h5>
-              <a class="btn btn-dark">Add to Cart</a>
+              <a class="btn btn-dark" style="cursor:pointer" *ngIf = "authService.loggedIn()" >Add to Cart</a>
+              <a class="btn btn-dark" routerLink="../..">Back</a>
             </div>
           </div>
         </div>

@@ -9,7 +9,7 @@
   <div class="collapse navbar-collapse" id="navbarCollapse">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="nav-link" routerLink="/categories" routerLinkActive="active">Categories<span class="sr-only">(current)</span></a>
+        <a class="nav-link" routerLink="/cart" style="cursor:pointer" *ngIf = "authService.loggedIn()" routerLinkActive="active">Cart</a>
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">

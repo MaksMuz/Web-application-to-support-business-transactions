@@ -1,11 +1,17 @@
 <div *ngIf="cartItems.length === 0" class="alert alert-info">Your cart is empty.</div>
 
-<ul *ngIf="cartItems.length > 0" class="list-group">
-  <li class="list-group-item" *ngFor="let item of cartItems">
-    <app-cart-item [cartItem]="item"></app-cart-item>
-  </li>
+<div class="card" *ngIf="cartItems.length > 0">
+  <div class="card-header">Cart</div>
+    <div class="card-body">
+      <ul  class="list-group">
+        <li *ngFor="let item of cartItems" class="list-group-item">
+          <div class="cart-item">
+            <a routerLink="/products/{{ item._id }}">
+              <Strong>{{ item.productTitle }}</Strong>
+            </a>
+          </div>
+        </li>
+      </ul>
+    </div>
+</div>
 
-  <li class="list-group-item active">
-    <strong>Total: {{ cartTotal | currency: 'EUR'}}</strong>
-  </li>
-</ul>

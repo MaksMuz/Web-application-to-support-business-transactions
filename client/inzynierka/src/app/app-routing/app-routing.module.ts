@@ -13,6 +13,7 @@ import {ProductListComponent} from '../components/shop-cart/product-list/product
 import {CategoryProductListComponent} from '../components/shop-cart/category-product-list/category-product-list.component';
 import {PriceProductListComponent} from '../components/shop-cart/price-product-list/price-product-list.component';
 import {SearchProductListComponent} from '../components/shop-cart/search-product-list/search-product-list.component';
+import {MainCartComponent} from '../components/main-cart/main-cart.component';
 
 const routes: Routes = [
   {
@@ -69,6 +70,10 @@ const routes: Routes = [
   {
     path: 'account/my-products',
     component: MyProductsComponent
+  },
+  {
+    path: 'cart',
+    component: MainCartComponent
   }
 ];
 

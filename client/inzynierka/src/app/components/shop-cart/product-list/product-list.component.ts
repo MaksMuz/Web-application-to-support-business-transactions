@@ -1,8 +1,9 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 
 import { ProductService } from '../../../services/product.service';
-import {Product} from '../../../models/product';
 import { MessengerService } from '../../../services/messenger.service';
+import {AuthService} from '../../../services/auth.service';
+import {CartService} from '../../../services/cart.service';
 
 @Component({
   selector: 'app-product-list',
@@ -11,15 +12,12 @@ import { MessengerService } from '../../../services/messenger.service';
 })
 export class ProductListComponent implements OnInit {
 
-  @Input() product: any;
-
-  productList: Product[] = [];
   productsData: any;
 
-  constructor(private productService: ProductService, private msg: MessengerService) { }
+  constructor(public authService: AuthService, private productService: ProductService,
+              private msg: MessengerService, private cartService: CartService) { }
 
   ngOnInit(): void {
-    this.productList = this.productService.getProducts();
     this.getProducts();
   }
 
@@ -34,9 +32,8 @@ export class ProductListComponent implements OnInit {
       );
   }
 
-
-  handleAddToCart(): void {
-    this.msg.sendMsg(this.product);
+  handleAddToCart(product): void {
+    this.cartService.addToCart(product);
   }
 
 }

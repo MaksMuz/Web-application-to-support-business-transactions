@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MessengerService } from '../../../services/messenger.service';
-import { Product } from '../../../models/product';
+import {CartService} from '../../../services/cart.service';
 
 @Component({
   selector: 'app-cart',
@@ -9,28 +8,49 @@ import { Product } from '../../../models/product';
 })
 export class CartComponent implements OnInit {
 
-  cartItems = [
-  //  { id: 1, productId: 1, productName: 'test1', quantity: 4, price: 100},
-  //  { id: 2, productId: 3, productName: 'test3', quantity: 5, price: 150},
-  //  { id: 3, productId: 2, productName: 'test2', quantity: 1, price: 10},
-  //  { id: 4, productId: 4, productName: 'test4', quantity: 2, price: 320},
-  ];
-
-  cartTotal = 0;
-
-  constructor(private msg: MessengerService) { }
-
-  ngOnInit(): void {
-
-    this.msg.getMsg().subscribe((product: Product) => {
-      this.addProductToCart(product);
-    });
+  constructor(private cartService: CartService) {
   }
 
-  addProductToCart(product: Product): void {
+  ngOnInit(): void {
+    this.cartItems();
+  }
+
+  get cartItems() {
+    return this.cartService.getCart();
+  }
+
+  trackByCartItems(index: number, item: any) {
+    return item._id;
+  }
+}
+// ngOnInit(): void {
+  // product: Product
+  // this.msg.getMsg().subscribe((product) => {
+  //  console.log(product);
+  //  console.log('in cart.component ngOnInit');
+  //  this.addProductToCart(product);
+  // });
+// }
+
+  /*getCart() {
+    const cart = localStorage.getItem('cart');
+    return cart ? JSON.parse(cart) : [];
+  }*/
+
+  // product: Product
+/*  addProductToCart(product): boolean {
+    const cart: any = this.getCart();
+    if (cart.find(data => JSON.stringify(data) === JSON.stringify(product))) {
+      return false;
+    } else {
+      cart.push(product);
+      this.cartItemsCount++;
+      localStorage.setItem('cart', JSON.stringify(cart));
+      return true;
+    }
     let productExists = false;
     for (let i in this.cartItems) {
-      if (this.cartItems[i].productId === product.id) {
+      if (this.cartItems[i].id === product._id) {
         this.cartItems[i].quantity++;
         productExists = true;
         break;
@@ -39,10 +59,10 @@ export class CartComponent implements OnInit {
 
     if (!productExists) {
       this.cartItems.push({
-        productId: product.id,
-        productName: product.name,
+        id: product._id,
+        productName: product.productTitle,
         quantity: 1,
-        price: product.price
+        price: product.productPrice
       });
     }
     // if (this.cartItems.length === 0) {
@@ -69,7 +89,4 @@ export class CartComponent implements OnInit {
     this.cartTotal = 0;
     this.cartItems.forEach(item => {
       this.cartTotal += (item.quantity * item.price);
-    });
-  }
-
-}
+    }); */
