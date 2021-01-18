@@ -35,8 +35,6 @@ export class RegisterComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  // todo: check if user by mail exists
-
   registerUser() {
     console.log(this.registerUserData);
     this.auth.registerUser(this.registerUserData)

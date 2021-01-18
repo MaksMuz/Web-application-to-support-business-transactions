@@ -1,11 +1,13 @@
 import { Injectable } from '@angular/core';
+import {ApiHelperService} from './api-helper.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class CartService {
+  private paymentUrl = 'http://localhost:3000/api/order/payment';
   cartItems = 0;
-  constructor() { }
+  constructor(private helper: ApiHelperService) { }
 
   getCart() {
     const cart = localStorage.getItem('cart');
@@ -36,5 +38,9 @@ export class CartService {
   clearCart(): void {
     this.cartItems = 0;
     localStorage.setItem('cart', '[]');
+  }
+
+  payment(bodyPayment) {
+    return this.helper.post<any>(this.paymentUrl, bodyPayment);
   }
 }

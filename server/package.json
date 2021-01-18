@@ -20,7 +20,7 @@
     "mongoose-algolia": "^1.10.1",
     "mongoose-deep-populate": "^3.2.0",
     "morgan": "^1.10.0",
-    "stripe": "^8.129.0"
+    "stripe": "^8.131.1"
   },
   "devDependencies": {
     "@google-cloud/storage": "^5.7.2",
