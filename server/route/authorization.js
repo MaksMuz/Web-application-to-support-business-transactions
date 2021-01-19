@@ -80,12 +80,12 @@ router.post('/resetpassword', (req, res) => {
                         res.json({ message: 'Problem with save user with resettoken' }); // Return error if cannot connect
                     } else {
                         // Create e-mail object to send to user
-                        var email = {
+                        let email = {
                             from: 'Inzynierka, TestoweNodeMailer@gmail.com@gmail.com',
                             to: user.userEmail,
                             subject: 'Reset Password Request',
-                            text: 'Hello ' + user.userName + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:4200/resetpassword/' + user.resettoken,
-                            html: 'Hello<strong> ' + user.userName + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:4200/resetpassword/' + user.resettoken + '">http://localhost:4200/resetpassword/</a>'
+                            text: 'Hello ' + user.userName + ', You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:4200/login/resetpassword/' + user.resettoken,
+                            html: 'Hello<strong> ' + user.userName + '</strong>,<br><br>You recently request a password reset link. Please click on the link below to reset your password:<br><br><a href="http://localhost:4200/login/resetpassword/' + user.resettoken + '">http://localhost:4200/login/resetpassword/</a>'
                         };
                         // Function to send e-mail to the user
                         client.sendMail(email, function(err, info) {

@@ -25,4 +25,8 @@ export class ApiHelperService {
   post<T>(link: string, body: any): Observable<any> {
     return this.http.post<T>(link, body, { headers: this.getHeaders(), observe: 'response' });
   }
+
+  put<T>(link: string, body: any): Observable<any> {
+    return this.http.put<T>(link, body, { headers: this.getHeaders(), observe: 'response' });
+  }
 }

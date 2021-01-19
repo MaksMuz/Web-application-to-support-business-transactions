@@ -27,6 +27,8 @@ import { CategoryProductListComponent } from './components/shop-cart/category-pr
 import { PriceProductListComponent } from './components/shop-cart/price-product-list/price-product-list.component';
 import { SearchProductListComponent } from './components/shop-cart/search-product-list/search-product-list.component';
 import { MainCartComponent } from './components/main-cart/main-cart.component';
+import { ResetPasswordComponent } from './components/reset-password/reset-password.component';
+import { ResetComponent } from './components/reset/reset.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { MainCartComponent } from './components/main-cart/main-cart.component';
     PriceProductListComponent,
     SearchProductListComponent,
     MainCartComponent,
+    ResetPasswordComponent,
+    ResetComponent,
   ],
   imports: [
     BrowserModule,
