@@ -38,44 +38,30 @@ router.post('/payment', (req, res) => {
         });
 });
 
-/*router.get('/orders', (req, res) => {
-    Order.find({ owner: req.userId })
-        .populate('products.product')
-        .populate('owner')
+router.get('/', (req, res) => {
+    Order.find({ orderOwnerId: req.userId })
+        .populate('orderProducts.orderProduct')
+        .populate('orderOwnerId')
         .exec((err, orders) => {
             if (err) {
-                res.json({
-                    success: false,
-                    message: "Couldn't find your order"
-                });
+                res.status(400).send('Failed to find your orders');
             } else {
-                res.json({
-                    success: true,
-                    message: 'Found your order',
-                    orders: orders
-                });
+                res.json({orders: orders});
             }
         });
 });
 
-router.get('/orders/:id',(req, res) => {
+router.get('/:id',(req, res) => {
     Order.findOne({ _id: req.params.id })
-        .deepPopulate('products.product.owner')
-        .populate('owner')
+        .deepPopulate('orderProducts.orderProduct.productOwner')
+        .populate('orderOwnerId')
         .exec((err, order) => {
             if (err) {
-                res.json({
-                    success: false,
-                    message: "Couldn't find your order"
-                });
+                res.status(400).send('Failed to find your orders');
             } else {
-                res.json({
-                    success: true,
-                    message: 'Found your order',
-                    order: order
-                });
+                res.json({order: order});
             }
         });
-});*/
+});
 
 module.exports = router;

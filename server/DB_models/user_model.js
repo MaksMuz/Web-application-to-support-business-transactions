@@ -34,6 +34,7 @@ const UserModelSchema = new Schema({
         type: Date,
         default: Date.now
     },
+    resettoken: String
 });
 
 // hashowanie hasel
