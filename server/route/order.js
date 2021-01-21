@@ -40,8 +40,8 @@ router.post('/payment', (req, res) => {
 
 router.get('/', (req, res) => {
     Order.find({ orderOwnerId: req.userId })
-        .populate('orderProducts.orderProduct')
-        .populate('orderOwnerId')
+        //.populate('orderProducts.orderProduct')
+        //.populate('orderOwnerId')
         .exec((err, orders) => {
             if (err) {
                 res.status(400).send('Failed to find your orders');

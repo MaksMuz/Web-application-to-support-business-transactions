@@ -1,0 +1,24 @@
+<div class="container p-5">
+  <h3 *ngIf="ordersData && !ordersData.length" class="display-2 text-center mt-5">My Orders is Empty</h3>
+  <div *ngIf="ordersData && ordersData.length" class="card">
+    <div class="card-header">Your Orders</div>
+      <div class="card-body">
+        <ul  class="list-group">
+          <li *ngFor="let order of ordersData" class="list-group-item">
+            <div class="cart-item">
+              <a routerLink="/account/my-orders/{{ order._id }}">
+                <Strong>{{ order._id }}</Strong>
+                <br />
+              </a>
+              <span>Order Price = {{order.orderPrice/100}} $</span>
+            </div>
+          </li>
+        </ul>
+        <hr />
+        <div>
+          <button type="button" routerLink="/account" class="btn btn-dark float-right">Back</button>
+        </div>
+      </div>
+  </div>
+</div>
+

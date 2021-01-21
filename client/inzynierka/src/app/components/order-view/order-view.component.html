@@ -1,0 +1,29 @@
+<hr />
+<h3 class="p-3 text-center">Order Details</h3>
+<div class="table-responsive">
+  <table class="table table-striped table-bordered">
+    <thead>
+    <tr>
+      <th scope="col">Product Name</th>
+      <th scope="col">Seller</th>
+      <th scope="col">Quantity</th>
+      <th scope="col">Price</th>
+      <th scope="col">Price x quantity</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let product of orderData.orderProducts">
+      <td>{{product.orderProduct.productTitle}}</td>
+      <td>{{product.orderProduct.productOwner.userName}} {{product.orderProduct.productOwner.userLastName}}</td>
+      <td>{{product.orderQuantity}}</td>
+      <td>{{product.orderProduct.productPrice}},00 $</td>
+      <td>{{product.orderProduct.productPrice * product.orderQuantity}},00 $</td>
+    </tr>
+    </tbody>
+  </table>
+  <p style="text-align: right"><strong>Total price: </strong>{{orderData.orderPrice/100}},00 $</p>
+  <hr />
+  <div>
+    <button type="button" routerLink="/account/my-orders" class="btn btn-dark float-right">Back</button>
+  </div>
+</div>
