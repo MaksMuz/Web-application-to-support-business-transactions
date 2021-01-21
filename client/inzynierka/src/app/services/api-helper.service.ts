@@ -29,4 +29,8 @@ export class ApiHelperService {
   put<T>(link: string, body: any): Observable<any> {
     return this.http.put<T>(link, body, { headers: this.getHeaders(), observe: 'response' });
   }
+
+  delete<T>(link: string): Observable<any> {
+    return this.http.delete<T>(link, {headers: this.getHeaders(), observe: 'response' });
+  }
 }

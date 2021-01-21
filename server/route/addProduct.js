@@ -24,6 +24,19 @@ router.get('/', (req, res) => {
     });
 });
 
+router.delete('/:id', (req,res) => {
+    if (!req.params.id) {
+        return res.status(400).json('No id.');
+    }
+    Product.deleteOne( { _id: req.params.id }, (err, product)=> {
+        if (err) {
+            return res.status(400).json('Failed to delete product.');
+        } else {
+            res.status(200).json('Remove product success');
+        }
+    });
+});
+
 router.post('/', upload.single('productImage'), (req, res) => {
     let productData = req.body;
     let product = new Product();

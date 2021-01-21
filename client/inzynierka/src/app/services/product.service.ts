@@ -17,6 +17,11 @@ export class ProductService {
     return this.helper.get<any>(url);
   }
 
+  deleteProduct(productId) {
+    const url = 'http://localhost:3000/api/addProduct/' + productId;
+    return this.helper.delete<any>(url);
+  }
+
   getAllProducts(){
     return this.helper.get<any>(this.baseUrl);
   }

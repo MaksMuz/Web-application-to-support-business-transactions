@@ -28,6 +28,8 @@
           </div>
           <div class="col-2">
             <h6 class="font-weight-bold text-danger">{{ product.productPrice | currency }}</h6>
+            <br /><br />
+            <a class="text-danger" (click)="removeProduct(product._id)">Delete</a>
           </div>
         </div>
         <hr>

@@ -26,4 +26,15 @@ export class MyProductsComponent implements OnInit {
         err => console.log(err)
       );
   }
+
+  removeProduct(productId) {
+    this.productService.deleteProduct(productId)
+      .subscribe(
+      res => {
+        console.log(res);
+        this.getMyProducts();
+      },
+      err => console.log(err)
+    );
+  }
 }

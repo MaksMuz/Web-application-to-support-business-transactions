@@ -21,7 +21,7 @@ export class ResetPasswordComponent implements OnInit {
 
   ngOnInit(): void {
     this.form = this.fb.group({
-      password: ['', [Validators.required, Validators.minLength(8)]],
+      password: ['', [Validators.minLength(8)]],
       password2: ['', [Validators.required]]
     }, {
       validator: PasswordValidator('password', 'password2')

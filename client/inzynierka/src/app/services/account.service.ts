@@ -11,6 +11,7 @@ export class AccountService {
   private baseUrl = 'http://localhost:3000/api/account';
   private getUserDataUrl = this.baseUrl + '/';
   private UserAddressUrl = this.baseUrl + '/address';
+  private changePasswordUrl = this.baseUrl + '/change';
   constructor(private helper: ApiHelperService, private http: HttpClient) {
   }
 
@@ -21,6 +22,14 @@ export class AccountService {
   // tslint:disable-next-line:typedef
   getUserAddress(){
     return this.helper.get<any>(this.UserAddressUrl);
+  }
+  // tslint:disable-next-line:typedef
+  updateUserData(user){
+    return this.helper.post<any>(this.getUserDataUrl, user);
+  }
+  // tslint:disable-next-line:typedef
+  updatePassword(password){
+    return this.helper.post<any>(this.changePasswordUrl, password);
   }
   // tslint:disable-next-line:typedef
   postUserAddress(address){

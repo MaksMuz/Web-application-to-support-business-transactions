@@ -16,8 +16,9 @@ import {SearchProductListComponent} from '../components/shop-cart/search-product
 import {MainCartComponent} from '../components/main-cart/main-cart.component';
 import {ResetPasswordComponent} from '../components/reset-password/reset-password.component';
 import {ResetComponent} from '../components/reset/reset.component';
-import {MyOrdersComponent} from "../components/my-orders/my-orders.component";
-import {OrderViewComponent} from "../components/order-view/order-view.component";
+import {MyOrdersComponent} from '../components/my-orders/my-orders.component';
+import {OrderViewComponent} from '../components/order-view/order-view.component';
+import {SettingsComponent} from '../components/settings/settings.component';
 
 const routes: Routes = [
   {
@@ -66,6 +67,10 @@ const routes: Routes = [
   {
     path: 'account/my-orders',
     component: MyOrdersComponent
+  },
+  {
+    path: 'account/settings',
+    component: SettingsComponent
   },
   {
     path: 'account/my-orders/:id',
