@@ -1,17 +1,18 @@
 const router = require('express').Router();
 const Product = require('../DB_models/product_model');
 const multer = require('multer');
+const sharp = require('sharp');
 
-const storage = multer.diskStorage({
+/*const storage = multer.diskStorage({
     destination: (req, file, callBack) => {
         callBack(null, 'C:/Users/maksi/Desktop/Praca inzynierska/client/inzynierka/src/assets/images/');
     },
     filename: (req, file, callBack) => {
         callBack(null, file.originalname);
     }
-});
-
-var upload = multer({storage: storage});
+});*/
+const storage = multer.memoryStorage();
+const upload = multer({storage: storage});
 
 router.get('/', (req, res) => {
     Product.find( { productOwner: req.userId }).populate('productCategory').exec((err, products)=> {
@@ -37,10 +38,11 @@ router.delete('/:id', (req,res) => {
     });
 });
 
-router.post('/', upload.single('productImage'), (req, res) => {
+router.post('/', upload.single('productImage'), async (req, res) => {
     let productData = req.body;
     let product = new Product();
-    const path = req.file.filename;
+    const path = req.file.originalname;
+    await sharp(req.file.buffer).resize({ width: 1024, height: 570,  fit: "contain"}).toFile('C:/Users/maksi/Desktop/Praca inzynierska/client/inzynierka/src/assets/images/' + path);
     product.productTitle = productData.productTitle;
     product.productDescription = productData.productDescription;
     product.productPrice = productData.productPrice;
