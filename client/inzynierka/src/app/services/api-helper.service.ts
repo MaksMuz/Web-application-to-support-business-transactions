@@ -18,7 +18,7 @@ export class ApiHelperService {
     return this.http.get<T>(link, { headers: this.getHeaders(), observe: 'response' });
   }
 
-  gett<T>(link: string, params): Observable<any> {
+  gett<T>(link: string, params: any): Observable<any> {
     return this.http.get<T>(link, {headers: this.getHeaders(), observe: 'response', params});
   }
 

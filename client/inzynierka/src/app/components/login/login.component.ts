@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class LoginComponent implements OnInit {
     email: '',
     password: ''
   };
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
   }
@@ -29,7 +30,7 @@ export class LoginComponent implements OnInit {
           localStorage.setItem('token', res.body.token);
           this.router.navigate(['']);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 }

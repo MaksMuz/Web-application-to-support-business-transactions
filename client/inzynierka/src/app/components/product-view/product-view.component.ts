@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
+import {CartService} from '../../services/cart.service';
 
 @Component({
   selector: 'app-product-view',
@@ -10,7 +11,8 @@ import {AuthService} from '../../services/auth.service';
 })
 export class ProductViewComponent implements OnInit {
   product: any;
-  constructor(public authService: AuthService, private productService: ProductService, private route: ActivatedRoute) { }
+  constructor(public authService: AuthService, private productService: ProductService,
+              private route: ActivatedRoute, public cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProduct();
@@ -26,5 +28,9 @@ export class ProductViewComponent implements OnInit {
         },
         err => console.log(err)
       );
+  }
+
+  handleAddToCart(product): void {
+    this.cartService.addToCart(product);
   }
 }

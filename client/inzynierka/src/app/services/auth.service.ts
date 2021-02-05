@@ -3,7 +3,6 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ApiHelperService} from './api-helper.service';
-import {CartService} from './cart.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +13,7 @@ export class AuthService {
   private loginUrl = this.baseUrl + '/login';
   private resetUrl = this.baseUrl + '/resetpassword';
 
-  constructor(private http: HttpClient, private router: Router, private helper: ApiHelperService, private cartService: CartService) { }
+  constructor(private http: HttpClient, private router: Router, private helper: ApiHelperService) { }
 
   // tslint:disable-next-line:typedef
   registerUser(user: any){
@@ -41,7 +40,6 @@ export class AuthService {
   // tslint:disable-next-line:typedef
   logoutUser() {
     localStorage.removeItem('token');
-    this.cartService.clearCart();
     this.router.navigate(['']);
   }
 

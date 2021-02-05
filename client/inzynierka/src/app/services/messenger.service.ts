@@ -1,20 +1,22 @@
 import { Injectable } from '@angular/core';
-import {Observable, Subject} from 'rxjs';
+import {NavigationStart, Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
 })
 export class MessengerService {
+  message = '';
 
-  subject = new Subject();
-
-  constructor() { }
-
-  sendMsg(product): void {
-    this.subject.next(product); // triggering the event
+  constructor(private router: Router) {
+    this.router.events.subscribe(event => {
+      if (event instanceof NavigationStart) {
+        this.message = '';
+      }
+    });
   }
 
-  getMsg(): Observable<any> {
-    return this.subject.asObservable();
+  info(message): void {
+    this.message = message;
   }
+
 }

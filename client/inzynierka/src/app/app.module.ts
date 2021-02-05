@@ -32,6 +32,8 @@ import { ResetComponent } from './components/reset/reset.component';
 import { MyOrdersComponent } from './components/my-orders/my-orders.component';
 import { OrderViewComponent } from './components/order-view/order-view.component';
 import { SettingsComponent } from './components/settings/settings.component';
+import { AlertComponent } from './components/alert/alert.component';
+import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -59,13 +61,15 @@ import { SettingsComponent } from './components/settings/settings.component';
     MyOrdersComponent,
     OrderViewComponent,
     SettingsComponent,
+    AlertComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
     HttpClientModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    NgbAlertModule
   ],
   providers: [ApiHelperService, AuthService],
   bootstrap: [AppComponent]

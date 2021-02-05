@@ -18,8 +18,8 @@
     </form>
     <a class="btn btn-outline-primary" *ngIf = "!authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>
     <a class="btn btn-outline-primary" *ngIf = "!authService.loggedIn()" routerLink="/register" routerLinkActive="active">Register</a>
-    <a class="btn btn-outline-primary" style="cursor:pointer" *ngIf = "authService.loggedIn()" routerLink="/account">My Account</a>
-    <a class="btn btn-outline-primary" style="cursor:pointer" *ngIf = "authService.loggedIn()" (click)="authService.logoutUser()">Logout</a>
+    <a class="btn btn-outline-primary text-white" style="cursor:pointer" *ngIf = "authService.loggedIn()" routerLink="/account">My Account</a>
+    <a class="btn btn-outline-primary text-white" style="cursor:pointer" *ngIf = "authService.loggedIn()" (click)="authService.logoutUser()">Logout</a>
   </div>
 </nav>
 </div>

@@ -12,7 +12,6 @@ import {Router} from '@angular/router';
 export class MainCartComponent implements OnInit {
   quantities = [];
   handler: any;
-  buttonHide = false;
   constructor(private cartService: CartService, private accountService: AccountService, private router: Router) { }
 
   trackByCartItems(index: number, item: any) {
@@ -73,7 +72,7 @@ export class MainCartComponent implements OnInit {
     });
   }
 
-  validate() {
+  /*validate() {
     if (!this.quantities.every(data => data > 0)) {
       console.log('Quantity cannot be less than one.');
       return false;
@@ -91,22 +90,30 @@ export class MainCartComponent implements OnInit {
           }
         });
     return true;
-  }
+  }*/
 
   checkout() {
-    this.buttonHide = true;
     try {
-      if (this.validate() === true) {
-        this.handler.open({
-          name: 'Inzynierka',
-          description: 'Checkout Payment',
-          amount: this.cartTotal * 100,
-          closed: () => {
-            this.buttonHide = false;
-          },
-        });
+      if (!this.quantities.every(data => data > 0)) {
+        console.log('Quantity cannot be less than one.');
       } else {
-        this.buttonHide = false;
+        this.accountService.getUserAddress()
+          .subscribe(
+            res => {
+              if (res.status === 204) {
+                this.router.navigate(['/account/address']).then(() => {
+                  console.log('You need to add your address before making a purchase.');
+                });
+              } else {
+                this.handler.open({
+                  name: 'Inzynierka',
+                  description: 'Checkout Payment',
+                  amount: this.cartTotal * 100,
+                  closed: () => {
+                  },
+                });
+              }
+            });
       }
     } catch (error) {
       console.log(error);
