@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../../services/account.service';
+import {MessengerService} from "../../services/messenger.service";
 
 @Component({
   selector: 'app-account',
@@ -13,7 +14,7 @@ export class AccountComponent implements OnInit {
         lastName: '',
         picture: ''
     };
-  constructor(public accountService: AccountService) { }
+  constructor(public accountService: AccountService, private message: MessengerService) { }
 
   ngOnInit(): void {
       this.getUserData();
@@ -28,7 +29,7 @@ export class AccountComponent implements OnInit {
                   this.accountUserData.lastName = userData.lastName;
                   this.accountUserData.picture = userData.picture;
                   },
-              err => console.log(err)
+              err => this.message.info(err.error)
           );
   }
 

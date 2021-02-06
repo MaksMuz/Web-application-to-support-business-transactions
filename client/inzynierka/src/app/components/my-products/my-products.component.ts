@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ProductService} from '../../services/product.service';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-my-products',
@@ -10,7 +11,7 @@ export class MyProductsComponent implements OnInit {
 
   productsData: any;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.getMyProducts();
@@ -23,7 +24,7 @@ export class MyProductsComponent implements OnInit {
           console.log(res.body);
           this.productsData = res.body.products;
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
@@ -33,8 +34,9 @@ export class MyProductsComponent implements OnInit {
       res => {
         console.log(res);
         this.getMyProducts();
+        this.message.info(res.body.message);
       },
-      err => console.log(err)
+      err => this.message.info(err.error)
     );
   }
 }

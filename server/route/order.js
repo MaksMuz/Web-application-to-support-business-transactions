@@ -33,7 +33,7 @@ router.post('/payment', (req, res) => {
 
             order.save();
             res.status(200).send({
-                'message': true
+                message: 'Successful payment'
             });
         });
 });

@@ -15,7 +15,7 @@ export class ProductListComponent implements OnInit {
   productsData: any;
 
   constructor(public authService: AuthService, private productService: ProductService,
-              private msg: MessengerService, private cartService: CartService) { }
+              private message: MessengerService, private cartService: CartService) { }
 
   ngOnInit(): void {
     this.getProducts();
@@ -28,12 +28,13 @@ export class ProductListComponent implements OnInit {
           console.log(res.body.products);
           this.productsData = res.body.products;
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
   handleAddToCart(product): void {
     this.cartService.addToCart(product);
+    this.message.info('You can add only one product by button');
   }
 
 }

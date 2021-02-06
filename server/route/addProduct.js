@@ -18,7 +18,7 @@ router.get('/', (req, res) => {
     Product.find( { productOwner: req.userId }).populate('productCategory').exec((err, products)=> {
         if (err) {
             console.log(err);
-            return res.status(400).json('Failed to find user products.');
+            return res.status(400).send('Failed to find user products.');
         } else {
             res.json({products: products});
         }
@@ -27,13 +27,13 @@ router.get('/', (req, res) => {
 
 router.delete('/:id', (req,res) => {
     if (!req.params.id) {
-        return res.status(400).json('No id.');
+        return res.status(400).send('No id.');
     }
     Product.deleteOne( { _id: req.params.id }, (err, product)=> {
         if (err) {
-            return res.status(400).json('Failed to delete product.');
+            return res.status(400).send('Failed to delete product.');
         } else {
-            res.status(200).json('Remove product success');
+            res.status(200).send({message: 'Remove product success'});
         }
     });
 });
@@ -51,9 +51,9 @@ router.post('/', upload.single('productImage'), async (req, res) => {
     product.productCategory = productData.productCategory;
     product.save((error, product) => {
         if ( error ) {
-            return res.status(400).json('Failed to add product.');
+            return res.status(400).send('Failed to add product.');
         } else {
-            res.status(200).json('success add product');
+            res.status(200).send({message: 'success add product'});
         }
     });
 });

@@ -4,7 +4,7 @@ const Category = require('../DB_models/category_model');
 router.get('/',(req, res) => {
     Category.find({}, (err, categories) => {
         if (err) {
-            return res.status(400).json('Failed to find categories.');
+            return res.status(400).send('Failed to find categories.');
         } else {
             res.json({categories: categories});
         }
@@ -16,9 +16,9 @@ router.post('/',(req, res) => {
     category.categoryName = categoryData.name;
     category.save((error, category) => {
         if ( error ) {
-            return res.status(400).json('Failed to add category.');
+            return res.status(400).send('Failed to add category.');
         } else {
-            res.status(200).json('success add category');
+            res.status(200).send({message: 'success add category'});
         }
     });
 });

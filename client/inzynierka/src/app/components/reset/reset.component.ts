@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AuthService} from '../../services/auth.service';
 import {Router} from '@angular/router';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-reset',
@@ -13,7 +14,7 @@ export class ResetComponent implements OnInit {
   resetData = {
     email: ''
   };
-  constructor(private auth: AuthService, private router: Router) { }
+  constructor(private auth: AuthService, private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
   }
@@ -24,8 +25,9 @@ export class ResetComponent implements OnInit {
       .subscribe(
         res => {
           this.router.navigate(['']);
+          this.message.info(res.body.message);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 }

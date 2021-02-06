@@ -3,6 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { PasswordValidator } from '../../shared/validators/password.validator';
+import {MessengerService} from "../../services/messenger.service";
 
 @Component({
   selector: 'app-settings',
@@ -24,7 +25,8 @@ export class SettingsComponent implements OnInit {
 
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
 
-  constructor(private fb: FormBuilder, public accountService: AccountService, private router: Router) { }
+  constructor(private fb: FormBuilder, public accountService: AccountService,
+              private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.getUserSettings();
@@ -45,7 +47,7 @@ export class SettingsComponent implements OnInit {
           this.userSettings.lastName = userData.lastName;
           this.userSettings.email = userData.email;
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
@@ -54,8 +56,9 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         res => {
           this.router.navigate(['account']);
+          this.message.info(res.body.message);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
@@ -68,8 +71,9 @@ export class SettingsComponent implements OnInit {
       .subscribe(
         res => {
           this.router.navigate(['account']);
+          this.message.info(res.body.message);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 

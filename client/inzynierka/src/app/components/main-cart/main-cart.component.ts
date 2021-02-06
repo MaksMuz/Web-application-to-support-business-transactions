@@ -3,6 +3,7 @@ import {CartService} from '../../services/cart.service';
 import { environment } from '../../../environments/environment';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-main-cart',
@@ -12,7 +13,8 @@ import {Router} from '@angular/router';
 export class MainCartComponent implements OnInit {
   quantities = [];
   handler: any;
-  constructor(private cartService: CartService, private accountService: AccountService, private router: Router) { }
+  constructor(private cartService: CartService, private accountService: AccountService,
+              private router: Router, private message: MessengerService) { }
 
   trackByCartItems(index: number, item: any) {
     return item._id;
@@ -72,37 +74,17 @@ export class MainCartComponent implements OnInit {
     });
   }
 
-  /*validate() {
-    if (!this.quantities.every(data => data > 0)) {
-      console.log('Quantity cannot be less than one.');
-      return false;
-    }
-    this.accountService.getUserAddress()
-      .subscribe(
-        res => {
-          if (res.status === 204){
-            this.router.navigate(['/account/address']).then(() => {
-              console.log('You need to add your address before making a purchase.');
-            });
-            return false;
-          } else {
-            return true;
-          }
-        });
-    return true;
-  }*/
-
   checkout() {
     try {
       if (!this.quantities.every(data => data > 0)) {
-        console.log('Quantity cannot be less than one.');
+        this.message.info('Quantity cannot be less than one.');
       } else {
         this.accountService.getUserAddress()
           .subscribe(
             res => {
               if (res.status === 204) {
                 this.router.navigate(['/account/address']).then(() => {
-                  console.log('You need to add your address before making a purchase.');
+                  this.message.info('You need to add your address before making a purchase.');
                 });
               } else {
                 this.handler.open({

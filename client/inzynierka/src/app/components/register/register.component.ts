@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 
 import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
 import { PasswordValidator } from '../../shared/validators/password.validator';
+import {MessengerService} from "../../services/messenger.service";
 
 @Component({
   selector: 'app-register',
@@ -23,7 +24,7 @@ export class RegisterComponent implements OnInit {
     password: '',
     samePassword: '',
   };
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router) {
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private message: MessengerService) {
     this.form = fb.group({
       password: ['', [Validators.required]],
       password2: ['', [Validators.required]]
@@ -43,7 +44,7 @@ export class RegisterComponent implements OnInit {
           localStorage.setItem('token', res.body.token);
           this.router.navigate(['account']);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 

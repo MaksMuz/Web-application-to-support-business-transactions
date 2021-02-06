@@ -5,7 +5,7 @@ const querystring = require('querystring');
 router.get('/',(req, res) => {
     Product.find({}, (err, products) => {
         if (err) {
-            return res.status(400).json('Failed to find products.');
+            return res.status(400).send('Failed to find products.');
         } else {
             res.json({products: products});
         }
@@ -16,7 +16,7 @@ router.get('/category/:id',(req, res) => {
     Product.find({productCategory: req.params.id}).exec((err, products) => {
         if (err) {
             console.log(err);
-            return res.status(400).json('Failed to find products in category.');
+            return res.status(400).send('Failed to find products in category.');
         } else {
             res.json({products: products});
         }
@@ -29,7 +29,7 @@ router.get('/price?',(req, res) => {
         .exec((err, products) => {
         if (err) {
             console.log(err);
-            return res.status(400).json('Failed to find by price.');
+            return res.status(400).send('Failed to find by price.');
         } else {
             res.json({products: products});
         }
@@ -42,7 +42,7 @@ router.get('/search?',(req, res) => {
         .exec((err, products) => {
             if (err) {
                 console.log(err);
-                return res.status(400).json('Failed to find by search.');
+                return res.status(400).send('Failed to find by search.');
             } else {
                 res.json({products: products});
             }

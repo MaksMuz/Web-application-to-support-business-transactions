@@ -5,6 +5,7 @@ router.get('/', (req, res) => {
     User.findOne({ _id: req.userId }, (err, user) => {
         if (err) {
             console.log(err);
+            res.status(400).send('Something go wrong');
         } else {
             res.json({
                 'userData': {
@@ -21,7 +22,7 @@ router.get('/', (req, res) => {
 router.post('/', (req, res) => {
     User.findOne({ _id: req.userId }, (err, user) => {
         if (err) {
-            res.status(400).send('could not find user');
+            res.status(400).send('Could not find user');
         } else {
             if (req.body.name) user.userName = req.body.name;
             if (req.body.lastName) user.userLastName = req.body.lastName
@@ -30,11 +31,9 @@ router.post('/', (req, res) => {
             user.save((error, updatedUser) => {
                 if ( error ) {
                     console.log(error);
-                    return res.status(400).json({
-                        message: "Failed to change acount settings."
-                    });
+                    return res.status(400).send('Failed to change acount settings.');
                 } else {
-                    res.status(200).json('success save new settings');
+                    res.status(200).send({ message: 'success change settings'});
                 }
             });
         }
@@ -56,7 +55,7 @@ router.post('/change', (req, res) => {
                         message: "Failed to change account password."
                     });
                 } else {
-                    res.status(200).json('success save new password');
+                    res.status(200).json('success change password');
                 }
             });
         }
@@ -67,6 +66,7 @@ router.get('/address', (req, res) => {
     User.findOne({ _id: req.userId, address: { $exists: true }}, (err, user) => {
         if (err) {
             console.log(err);
+            res.status(400).send('Something go wrong');
         } else {
             if (user) {
                 res.json({
@@ -90,7 +90,7 @@ router.post('/address', (req, res) => {
         if (err)
         {
             console.log(req);
-            res.status(400).send('could not find user');
+            res.status(400).send('Could not find user');
         }
         else {
             const newAddress = req.body;
@@ -103,11 +103,9 @@ router.post('/address', (req, res) => {
             user.save((error, updatedUser) => {
                 if ( error ) {
                     console.log(error);
-                    return res.status(400).json({
-                        message: "Failed to save address to user."
-                    });
+                    res.status(400).send('Failed to save address.');
                 } else {
-                    res.status(200).json('success save address data');
+                    res.status(200).send({message: 'Success update address'});
                 }
             });
         }

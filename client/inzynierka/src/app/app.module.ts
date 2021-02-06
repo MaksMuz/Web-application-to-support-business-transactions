@@ -34,6 +34,7 @@ import { OrderViewComponent } from './components/order-view/order-view.component
 import { SettingsComponent } from './components/settings/settings.component';
 import { AlertComponent } from './components/alert/alert.component';
 import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
+import {MessengerService} from './services/messenger.service';
 
 @NgModule({
   declarations: [
@@ -71,7 +72,7 @@ import {NgbAlertModule} from '@ng-bootstrap/ng-bootstrap';
     ReactiveFormsModule,
     NgbAlertModule
   ],
-  providers: [ApiHelperService, AuthService],
+  providers: [ApiHelperService, AuthService, MessengerService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

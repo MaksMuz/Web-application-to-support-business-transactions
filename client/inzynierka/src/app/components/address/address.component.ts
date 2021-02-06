@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
+import {MessengerService} from "../../services/messenger.service";
 
 class Address {
   country: string;
@@ -25,7 +26,7 @@ export class AddressComponent implements OnInit {
     postCode: ''
   };
 
-  constructor(private accountService: AccountService, private router: Router) { }
+  constructor(private accountService: AccountService, private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.getUserInfo();
@@ -50,7 +51,7 @@ export class AddressComponent implements OnInit {
             this.address.postCode = res.body.address.postCode;
           }
           },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
@@ -60,8 +61,9 @@ export class AddressComponent implements OnInit {
         .subscribe(
           res => {
               this.router.navigate(['account']);
+              this.message.info(res.body.message);
           },
-          err => console.log(err)
+          err => this.message.info(err.error)
       );
   }
 

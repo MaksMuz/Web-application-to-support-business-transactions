@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {ProductService} from '../../services/product.service';
 import {FiltersService} from '../../services/filters.service';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-add-product',
@@ -17,10 +18,10 @@ export class AddProductComponent implements OnInit {
     productCategory: '',
     productImage: null
   };
-  images;
   categories: any;
 
-  constructor(private filterService: FiltersService, private productService: ProductService, private router: Router) { }
+  constructor(private filterService: FiltersService, private productService: ProductService,
+              private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.getCategories();
@@ -45,7 +46,7 @@ export class AddProductComponent implements OnInit {
         res => {
           this.router.navigate(['account/my-products']);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
@@ -55,7 +56,7 @@ export class AddProductComponent implements OnInit {
         res => {
           this.categories = res.body.categories;
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 }

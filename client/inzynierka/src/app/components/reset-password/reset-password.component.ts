@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { PasswordValidator } from '../../shared/validators/password.validator';
 import {AuthService} from '../../services/auth.service';
 import {ActivatedRoute, Router} from '@angular/router';
+import {MessengerService} from '../../services/messenger.service';
 
 
 @Component({
@@ -17,7 +18,8 @@ export class ResetPasswordComponent implements OnInit {
   password: ''
 };
 
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private route: ActivatedRoute) { }
+  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router,
+              private route: ActivatedRoute, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.form = this.fb.group({
@@ -34,8 +36,9 @@ export class ResetPasswordComponent implements OnInit {
       .subscribe(
         res => {
           this.router.navigate(['login']);
+          this.message.info(res.body.message);
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 

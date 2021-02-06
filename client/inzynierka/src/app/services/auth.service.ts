@@ -3,6 +3,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
 import {ApiHelperService} from './api-helper.service';
+import {CartService} from './cart.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -13,23 +15,23 @@ export class AuthService {
   private loginUrl = this.baseUrl + '/login';
   private resetUrl = this.baseUrl + '/resetpassword';
 
-  constructor(private http: HttpClient, private router: Router, private helper: ApiHelperService) { }
+  constructor(private http: HttpClient, private router: Router, private helper: ApiHelperService, private cartService: CartService) { }
 
   // tslint:disable-next-line:typedef
-  registerUser(user: any){
+  registerUser(user: any) {
     return this.helper.post<any>(this.registerUrl, user);
   }
 
-  resetPassword(token, user: any){
+  resetPassword(token, user: any) {
     const url = this.resetUrl + '/' + token;
     return this.helper.put<any>(url, user);
   }
   // tslint:disable-next-line:typedef
-  loginUser(user){
+  loginUser(user) {
     return this.helper.post<any>(this.loginUrl, user);
   }
 
-  resetMail(user){
+  resetMail(user) {
     return this.helper.post<any>(this.resetUrl, user);
   }
   // tslint:disable-next-line:typedef
@@ -40,6 +42,7 @@ export class AuthService {
   // tslint:disable-next-line:typedef
   logoutUser() {
     localStorage.removeItem('token');
+    this.cartService.clearCart();
     this.router.navigate(['']);
   }
 

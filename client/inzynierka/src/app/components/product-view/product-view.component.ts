@@ -3,6 +3,7 @@ import {ProductService} from '../../services/product.service';
 import {ActivatedRoute} from '@angular/router';
 import {AuthService} from '../../services/auth.service';
 import {CartService} from '../../services/cart.service';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-product-view',
@@ -12,7 +13,7 @@ import {CartService} from '../../services/cart.service';
 export class ProductViewComponent implements OnInit {
   product: any;
   constructor(public authService: AuthService, private productService: ProductService,
-              private route: ActivatedRoute, public cartService: CartService) { }
+              private route: ActivatedRoute, public cartService: CartService, private message: MessengerService) { }
 
   ngOnInit(): void {
     this.getProduct();
@@ -26,11 +27,12 @@ export class ProductViewComponent implements OnInit {
           console.log(res.body.product);
           this.product = res.body.product;
         },
-        err => console.log(err)
+        err => this.message.info(err.error)
       );
   }
 
   handleAddToCart(product): void {
     this.cartService.addToCart(product);
+    this.message.info('Product added to cart(If you want more than one go to cart)');
   }
 }
