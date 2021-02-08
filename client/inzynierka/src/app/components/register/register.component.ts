@@ -3,9 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
 
-import { FormBuilder, FormGroup, FormControl, Validators} from '@angular/forms';
-import { PasswordValidator } from '../../shared/validators/password.validator';
-import {MessengerService} from "../../services/messenger.service";
+import { FormGroup } from '@angular/forms';
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +15,9 @@ export class RegisterComponent implements OnInit {
   form: FormGroup = new FormGroup({});
 
   emailPattern = '^[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$';
+  namePattern = '[A-Za-z]*';
+  lastNamePattern = '[a-zA-Z ]*';
+
 
   registerUserData = {
     name: '',
@@ -24,35 +26,24 @@ export class RegisterComponent implements OnInit {
     password: '',
     samePassword: '',
   };
-  constructor(private fb: FormBuilder, private auth: AuthService, private router: Router, private message: MessengerService) {
-    this.form = fb.group({
-      password: ['', [Validators.required]],
-      password2: ['', [Validators.required]]
-    }, {
-      validator: PasswordValidator('password', 'password2')
-    });
-  }
+  constructor(private auth: AuthService, private router: Router, private message: MessengerService) { }
 
   ngOnInit(): void {
   }
 
   registerUser() {
-    console.log(this.registerUserData);
-    this.auth.registerUser(this.registerUserData)
-      .subscribe(
-        res => {
-          localStorage.setItem('token', res.body.token);
-          this.router.navigate(['account']);
-        },
-        err => this.message.info(err.error)
-      );
-  }
-
-  get f(){
-    return this.form.controls;
-  }
-
-  submit(){
-    console.log(this.form.value);
+    if (this.registerUserData.password === this.registerUserData.samePassword) {
+      console.log(this.registerUserData);
+      this.auth.registerUser(this.registerUserData)
+        .subscribe(
+          res => {
+            localStorage.setItem('token', res.body.token);
+            this.router.navigate(['account']);
+          },
+          err => this.message.info(err.error)
+        );
+    } else {
+      this.message.info('Password doesn\'t match');
+    }
   }
 }

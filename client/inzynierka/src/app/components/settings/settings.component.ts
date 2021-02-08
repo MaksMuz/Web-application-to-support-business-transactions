@@ -3,7 +3,7 @@ import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
 import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import { PasswordValidator } from '../../shared/validators/password.validator';
-import {MessengerService} from "../../services/messenger.service";
+import {MessengerService} from '../../services/messenger.service';
 
 @Component({
   selector: 'app-settings',
@@ -12,6 +12,8 @@ import {MessengerService} from "../../services/messenger.service";
 })
 export class SettingsComponent implements OnInit {
   form: FormGroup;
+
+  namePattern = '[A-Za-z]*';
 
   userSettings = {
     name: '',

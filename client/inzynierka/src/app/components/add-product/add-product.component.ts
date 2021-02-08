@@ -18,6 +18,7 @@ export class AddProductComponent implements OnInit {
     productCategory: '',
     productImage: null
   };
+  pricePattern = '^[0-9]{1,7}$';
   categories: any;
 
   constructor(private filterService: FiltersService, private productService: ProductService,

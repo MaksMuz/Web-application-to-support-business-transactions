@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {FiltersService} from '../../../services/filters.service';
 import {Router} from '@angular/router';
+import {MessengerService} from '../../../services/messenger.service';
 
 @Component({
   selector: 'app-filters',
@@ -9,7 +10,7 @@ import {Router} from '@angular/router';
 })
 export class FiltersComponent implements OnInit {
 
-  constructor(private filterService: FiltersService, private router: Router) { }
+  constructor(private filterService: FiltersService, private router: Router, private message: MessengerService) { }
 
   categoriesNames: any;
   valueFrom: number;
@@ -30,6 +31,10 @@ export class FiltersComponent implements OnInit {
   }
 
   filter(): void {
-    this.router.navigate(['shop/price'], { queryParams: { valueFrom: this.valueFrom, valueTo: this.valueTo } });
+    if ((this.valueFrom && this.valueTo) && (this.valueFrom < this.valueTo)) {
+      this.router.navigate(['shop/price'], {queryParams: {valueFrom: this.valueFrom, valueTo: this.valueTo}});
+    } else {
+      this.message.info('Value from shouldn\'t be higher than value to and both should be insert');
+    }
   }
 }

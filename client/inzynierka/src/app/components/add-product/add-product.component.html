@@ -12,7 +12,7 @@
             <div class="form-group">
               <label>Title</label>
               <input type="text" [(ngModel)]="productData.productTitle" #title="ngModel" name="title"
-                     class="form-control rounded-0" required minlength="2" required>
+                     class="form-control rounded-0" minlength="2" maxlength="20" required>
               <div *ngIf="title.invalid && (title.touched)"
                    class="alert alert-danger">
 
@@ -27,7 +27,7 @@
             <div class="form-group">
               <label>Price</label>
               <input type="number" [(ngModel)]="productData.productPrice" #price="ngModel" name="price"
-                     class="form-control rounded-0" min="0" required>
+                     class="form-control rounded-0" min="0" max="1000000" [pattern]="pricePattern" required>
               <div *ngIf="price.invalid && (price.touched)"
                    class="alert alert-danger">
 
@@ -36,6 +36,12 @@
                 </div>
                 <div *ngIf="price.errors.min">
                   Price must be minimum 0.
+                </div>
+                <div *ngIf="price.errors.max">
+                  Price can be maximum 1000000.
+                </div>
+                <div *ngIf="price.errors.pattern">
+                  Please provide a valid price(Only numbers and maximum price 1000000).
                 </div>
               </div>
             </div>
@@ -59,7 +65,7 @@
               <label>Description(max length 500)</label>
               <textarea [(ngModel)]="productData.productDescription" #description="ngModel"
                         name="description" class="form-control rounded-0" rows="5"
-                        required minlength="20" maxlength="500" required></textarea>
+                        minlength="20" maxlength="500" required></textarea>
               <div *ngIf="description.invalid && (description.touched)"
                    class="alert alert-danger">
 

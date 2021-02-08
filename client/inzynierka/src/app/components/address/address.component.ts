@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {AccountService} from '../../services/account.service';
 import {Router} from '@angular/router';
-import {MessengerService} from "../../services/messenger.service";
+import {MessengerService} from '../../services/messenger.service';
 
 class Address {
   country: string;
@@ -18,6 +18,9 @@ class Address {
 })
 export class AddressComponent implements OnInit {
 
+  letterPattern = '[A-Za-z]*';
+  postCodePattern = '^[0-9]{2}-[0-9]{3}';
+  addressPattern = '^[A-Za-z]+ [0-9]{1,}/[0-9]{0,3}';
   address: Address = {
     country: '',
     province: '',

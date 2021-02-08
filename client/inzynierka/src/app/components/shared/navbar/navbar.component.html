@@ -13,7 +13,7 @@
       </li>
     </ul>
     <form class="form-inline mt-2 mt-md-0">
-      <input class="form-control mr-sm-2" type="text" [(ngModel)]="reg" name="search" placeholder="Search" aria-label="Search">
+      <input class="form-control mr-sm-2" type="text" [(ngModel)]="reg" name="search" placeholder="Search" aria-label="Search" maxlength="20">
       <button class="btn btn-outline-success my-2 my-sm-0" type="submit" (click)="search()">Search</button>
     </form>
     <a class="btn btn-outline-primary" *ngIf = "!authService.loggedIn()" routerLink="/login" routerLinkActive="active">Login</a>

@@ -12,7 +12,7 @@
             <div class="form-group">
               <label>Name</label>
               <input type="text" [(ngModel)]="registerUserData.name" #name="ngModel" name="name"
-                     class="form-control rounded-0" required minlength="2" required>
+                     class="form-control rounded-0" [pattern]="namePattern" minlength="2" maxlength="20" required>
               <div *ngIf="name.invalid && (name.touched)"
                    class="alert alert-danger">
 
@@ -22,12 +22,15 @@
                 <div *ngIf="name.errors.minlength">
                   Name must be at least 2 characters long.
                 </div>
+                <div *ngIf="name.errors.pattern">
+                  Please provide a valid name.
+                </div>
               </div>
             </div>
             <div class="form-group">
               <label>Last Name</label>
               <input type="text" [(ngModel)]="registerUserData.lastName" #lastName="ngModel" name="lastName"
-                     class="form-control rounded-0" required minlength="2" required>
+                     class="form-control rounded-0" [pattern]="lastNamePattern" minlength="2" maxlength="20" required>
               <div *ngIf="lastName.invalid && (lastName.touched)"
                    class="alert alert-danger">
 
@@ -36,6 +39,9 @@
                 </div>
                 <div *ngIf="lastName.errors.minlength">
                   Last Name must be at least 2 characters long.
+                </div>
+                <div *ngIf="lastName.errors.pattern">
+                  Please provide a valid last name.
                 </div>
               </div>
             </div>
@@ -57,7 +63,7 @@
             <div class="form-group">
               <label>Password</label>
               <input type="password" [(ngModel)]="registerUserData.password" #password="ngModel" name="password"
-                     class="form-control rounded-0" required minlength="8" required>
+                     class="form-control rounded-0" required minlength="8" maxlength="15" required>
               <div *ngIf="password.invalid && (password.touched)"
                    class="alert alert-danger">
 
@@ -72,7 +78,7 @@
             <div class="form-group">
               <label>Confirm Password</label>
               <input type="password" [(ngModel)]="registerUserData.samePassword" #password2="ngModel" name="samePassword"
-                     class="form-control rounded-0" required minlength="8" required>
+                     class="form-control rounded-0" required minlength="8" maxlength="15" required>
               <div *ngIf="password2.invalid && (password2.touched)"
                    class="alert alert-danger">
 
